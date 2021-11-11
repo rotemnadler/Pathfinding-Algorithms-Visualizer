@@ -2,9 +2,9 @@
 
 The following code visualizes the solving process of common pathfinding algorithms.
 
-Choose a start and an end point, create barriers and run either A*, BFS (Breadth First Search) or Dijkstra algorithm! 
+Choose a start and an end point, create barriers and run either A*, BFS (Breadth First Search) or Dijkstra algorithms! 
 
-A* -> BFS -> Dijkstra
+A* -> BFS -> Dijkstra:
 
 https://user-images.githubusercontent.com/93077934/141268979-6b8a3b11-a7ba-4e0b-9b02-0bc978795942.mov
 
