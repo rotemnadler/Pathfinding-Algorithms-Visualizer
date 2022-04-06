@@ -2,22 +2,11 @@ import pygame
 import math
 import queue
 from queue import PriorityQueue
-
+import colors
 SIZE = 800
 WINDOW = pygame.display.set_mode((SIZE, SIZE))
 pygame.display.set_caption("Path Finding Algorithms")
-
-LIGHTRED = (255, 102, 102)  # in closed set
-LIGHTGREEN = (204, 255, 153)  # in open set
-BLUE = (71, 58, 191)
-YELLOW = (235, 224, 144)
-WHITE = (255, 255, 255)  # not visited
-DARKGRAY = (41, 41, 61)  # barrier
-LIGHTORANGE = (255, 170, 128)  # start node
-TURQUOISE = (179, 255, 236)  # end node
-LIGHTGRAY = (230, 230, 230)
-LIGHTPURPLE = (153, 153, 255)  # chosen path
-COLORS = {"reset": WHITE, "closed": LIGHTRED, "open": LIGHTGREEN, "barrier": DARKGRAY, "start": LIGHTORANGE, "end": TURQUOISE, "path": LIGHTPURPLE}
+COLORS = {"reset": colors.WHITE, "closed": colors.LIGHTRED, "open": colors.LIGHTGREEN, "barrier": colors.DARKGRAY, "start": colors.LIGHTORANGE, "end": colors.TURQUOISE, "path": colors.LIGHTPURPLE}
 
 
 class Spot:
@@ -250,13 +239,13 @@ def make_grid(rows, width):  # data structure
 def draw_grid(window, rows, width):  # grid lines
     gap = width // rows
     for i in range(rows):
-        pygame.draw.line(window, LIGHTGRAY, (0, i * gap), (width, i * gap))
+        pygame.draw.line(window, colors.LIGHTGRAY, (0, i * gap), (width, i * gap))
         for j in range(rows):
-            pygame.draw.line(window, LIGHTGRAY, (j * gap, 0), (j * gap, width))
+            pygame.draw.line(window, colors.LIGHTGRAY, (j * gap, 0), (j * gap, width))
 
 
 def draw(window, grid, rows, width):  # draw game grid
-    window.fill(WHITE)
+    window.fill(colors.WHITE)
 
     for row in grid:
         for spot in row:

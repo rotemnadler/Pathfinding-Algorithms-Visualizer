@@ -1,0 +1,10 @@
+LIGHTRED = (255, 102, 102)  # in closed set
+LIGHTGREEN = (204, 255, 153)  # in open set
+BLUE = (71, 58, 191)
+YELLOW = (235, 224, 144)
+WHITE = (255, 255, 255)  # not visited
+DARKGRAY = (41, 41, 61)  # barrier
+LIGHTORANGE = (255, 170, 128)  # start node
+TURQUOISE = (179, 255, 236)  # end node
+LIGHTGRAY = (230, 230, 230)
+LIGHTPURPLE = (153, 153, 255)  # chosen path
