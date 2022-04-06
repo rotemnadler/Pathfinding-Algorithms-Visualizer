@@ -17,6 +17,7 @@ LIGHTORANGE = (255, 170, 128)  # start node
 TURQUOISE = (179, 255, 236)  # end node
 LIGHTGRAY = (230, 230, 230)
 LIGHTPURPLE = (153, 153, 255)  # chosen path
+COLORS = {"reset": WHITE, "closed": LIGHTRED, "open": LIGHTGREEN, "barrier": DARKGRAY, "start": LIGHTORANGE, "end": TURQUOISE, "path": LIGHTPURPLE}
 
 
 class Spot:
@@ -25,7 +26,7 @@ class Spot:
         self.col = col
         self.x = row * width
         self.y = col * width
-        self.color = WHITE
+        self.colors = {"reset": True, "closed": False, "open": False, "barrier": False, "start": False, "end": False, "path": False}
         self.neighbors = []
         self.width = width
         self.total_rows = total_rows
@@ -34,43 +35,50 @@ class Spot:
         return self.row, self.col
 
     def is_closed(self):
-        return self.color == LIGHTRED
+        return self.colors["closed"]
 
     def is_open(self):
-        return self.color == LIGHTGREEN
+        return self.colors["open"]
 
     def is_barrier(self):
-        return self.color == DARKGRAY
+        return self.colors["barrier"]
 
     def is_start(self):
-        return self.color == LIGHTORANGE
+        return self.colors["start"]
 
     def is_end(self):
-        return self.color == TURQUOISE
+        return self.colors["end"]
 
     def reset(self):
-        self.color = WHITE
+        self.colors = {"reset": True, "closed": False, "open": False, "barrier": False, "start": False, "end": False, "path": False}
 
     def make_closed(self):
-        self.color = LIGHTRED
+        self.colors = {"reset": False, "closed": True, "open": False, "barrier": False, "start": False, "end": False, "path": False}
 
     def make_open(self):
-        self.color = LIGHTGREEN
+        self.colors = {"reset": False, "closed": False, "open": True, "barrier": False, "start": False, "end": False, "path": False}
 
     def make_barrier(self):
-        self.color = DARKGRAY
+        self.colors["reset"] = False
+        self.colors["barrier"] = True
 
     def make_start(self):
-        self.color = LIGHTORANGE
+        self.colors["reset"] = False
+        self.colors["start"] = True
 
     def make_end(self):
-        self.color = TURQUOISE
+        self.colors["reset"] = False
+        self.colors["end"] = True
 
     def make_path(self):
-        self.color = LIGHTPURPLE
+        self.colors = {"reset": False, "closed": False, "open": False, "barrier": False, "start": False, "end": False, "path": True}
 
     def draw(self, window):
-        pygame.draw.rect(window, self.color, (self.x, self.y, self.width, self.width))
+        for state in self.colors:
+            if self.colors[state]:
+                color = COLORS[state]
+        
+        pygame.draw.rect(window, color, (self.x, self.y, self.width, self.width))
 
     def update_neighbors(self, grid):
         self.neighbors = []
